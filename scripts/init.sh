@@ -31,6 +31,8 @@ PGID=${PGID:-1001}
 # Check vm.max_map_count before proceeding
 # check_vm_max_map_count
 
+/usr/bin/entrypoint &
+
 # Fix games user uid & gid then re set the owner of wine folders
 groupmod -o -g $PGID games
 usermod -o -u $PUID -g games games
