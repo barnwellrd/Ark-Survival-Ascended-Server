@@ -1,6 +1,9 @@
 # Use an image that has Wine installed to run Windows applications
 FROM scottyhardy/docker-wine
 
+# Run docker wine entrypoint for RDP access
+RUN /usr/bin/entrypoint
+
 # Add ARG for PUID and PGID with a default value
 ARG PUID=1001
 ARG PGID=1001
