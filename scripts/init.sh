@@ -13,23 +13,23 @@ PUID=${PUID:-1001}
 PGID=${PGID:-1001}
 
 # Function to check if vm.max_map_count is set to a sufficient value
-check_vm_max_map_count() {
-    local required_map_count=262144
-    local current_map_count=$(cat /proc/sys/vm/max_map_count)
+# check_vm_max_map_count() {
+#     local required_map_count=262144
+#     local current_map_count=$(cat /proc/sys/vm/max_map_count)
 
-    if [ "$current_map_count" -lt "$required_map_count" ]; then
-        echo "ERROR: The vm.max_map_count on the host system is too low ($current_map_count) and needs to be at least $required_map_count."
-        echo "To fix this issue temporarily (until the next reboot), run the following command on your Docker host:"
-        echo "sudo sysctl -w vm.max_map_count=262144"
-        echo "For a permanent fix, add the following line to /etc/sysctl.conf on your Docker host and then run 'sysctl -p':"
-        echo "vm.max_map_count=262144"
-        echo "After making this change, please restart the Docker container."
-        exit 1
-    fi
-}
+#     if [ "$current_map_count" -lt "$required_map_count" ]; then
+#         echo "ERROR: The vm.max_map_count on the host system is too low ($current_map_count) and needs to be at least $required_map_count."
+#         echo "To fix this issue temporarily (until the next reboot), run the following command on your Docker host:"
+#         echo "sudo sysctl -w vm.max_map_count=262144"
+#         echo "For a permanent fix, add the following line to /etc/sysctl.conf on your Docker host and then run 'sysctl -p':"
+#         echo "vm.max_map_count=262144"
+#         echo "After making this change, please restart the Docker container."
+#         exit 1
+#     fi
+# }
 
 # Check vm.max_map_count before proceeding
-check_vm_max_map_count
+# check_vm_max_map_count
 
 # Fix games user uid & gid then re set the owner of wine folders
 groupmod -o -g $PGID games
