@@ -1,0 +1,24 @@
+name: Docker Image CI
+on:
+  push:
+    branches: [ "master" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build and Push to DockerHub
+      uses: MaximilianoBz/dockerhub-buildpush@v1.1
+      with:
+        # Docker Registry Url, eg: docker.io
+        registry_url: docker.io
+        # Docker Image Repository Name, eg: username/demo-app
+        repository_name: asa-server
+        # Docker Login UserName, from: https://hub.docker.com/
+        user_name: barnwellrd12
+        # Docker Login Access Token, from: https://hub.docker.com/
+        password: ${dockerHubtoken}
+        # Image Build Version
+        image_version: latest
+        # Docker File Directory, Default Current Directory (.)
+        docker_file: .
