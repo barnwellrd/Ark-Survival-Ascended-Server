@@ -17,7 +17,7 @@ jobs:
         # Docker Login UserName, from: https://hub.docker.com/
         user_name: barnwellrd12
         # Docker Login Access Token, from: https://hub.docker.com/
-        password: ${dockerHubtoken}
+        password: ${DOCKER_HUB_TOKEN}
         # Image Build Version
         image_version: latest
         # Docker File Directory, Default Current Directory (.)
